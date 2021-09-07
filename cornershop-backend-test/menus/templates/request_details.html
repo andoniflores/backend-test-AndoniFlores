@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu App</title>
+    <style>
+        table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        }
+
+        td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+        overflow: hidden !important;
+        }
+
+        tr:nth-child(even) {
+        background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+<h1 style="text-align: center; font-family: arial, sans-serif;"> Requests for date: {{menu_requests.first.menu.menu_date}}</h1>
+<table>
+    <tr>
+        <th>Employee Name</th>
+        <th>Option Chosen</th>
+        <th>Comment</th>
+    </tr>
+    {% for request in menu_requests %}
+    <tr>
+        <td>{{request.menu_request_employee_name}}</td>
+        <td>{{request.menu_option_chosen}}</td>
+        <td>{{request.menu_option_chosen_comment}}</td>
+    </tr>
+    {%endfor%}
+</table><br>
+<a href="{% url 'menus:requests'%}"><button type="button"> Back </button> </a><br><br>
+</body>
+</html>

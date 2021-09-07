@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu App</title>
+    <style>
+        table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        }
+
+        td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+        }
+
+        tr:nth-child(even) {
+        background-color: #dddddd;
+        }
+
+        span {
+            font-family: arial, sans-serif;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body style="align: center">
+<h1 style="font-family: arial, sans-serif;"> Detail Menu</h1>
+<span><b>Date:</b> {{obj.menu_date}}</span><br>
+<span><b>Greeting message:</b> {{obj.menu_greeting_msg}}</span><br>
+<span><b>Goodbye message:</b> {{obj.menu_goodbye_msg}}</span><br>
+<span><b>Options:</b> 
+    <ol>
+        <li>{{obj.menu_option_1}}</li>
+        <li>{{obj.menu_option_2}}</li>
+        <li>{{obj.menu_option_3}}</li>
+        <li>{{obj.menu_option_4}}</li>
+    </ol>
+</span>
+<a href="{% url 'menus:index'%}"><button type="button"> Back </button> </a><br><br>
+</form>
+</body>
+</html>

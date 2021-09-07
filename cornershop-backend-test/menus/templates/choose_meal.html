@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu App</title>
+    <style>
+        table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        }
+
+        td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+        }
+
+        tr:nth-child(even) {
+        background-color: #dddddd;
+        }
+    </style>
+</head>
+<body style="align: center">
+{% if not deadline_met%}
+    {% if menu_exist %}
+    <h1 style="text-align: center; font-family: arial, sans-serif;"> Choose meal for date: {{date}}</h1>
+    <form action="{% url 'choose_meal' request_id %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="menu_id" value={{menu.id}}>
+        <label for="employee_name">Employee Name:</label><br>
+        <input type="text" name="employee_name" id="employee_name" required><br><br>
+        <input type="radio" name="meal_list" id="option1" value="{{menu.menu_option_1}}">
+        <label for="option1">{{menu.menu_option_1}}</label><br><br>
+        <input type="radio" name="meal_list" id="option2" value="{{menu.menu_option_2}}">
+        <label for="option2">{{menu.menu_option_2}}</label><br><br>
+        <input type="radio" name="meal_list" id="option3" value="{{menu.menu_option_3}}">
+        <label for="option3">{{menu.menu_option_3}}</label><br><br>
+        <input type="radio" name="meal_list" id="option4" value="{{menu.menu_option_4}}">
+        <label for="option4">{{menu.menu_option_4}}</label><br><br>
+        <label for="meal_comment">Comment:</label>
+        <input type="text" name="meal_comment" id="meal_comment"><br><br>
+        <input type="submit" value="Send Request">
+    </form>
+    {% else %}
+        <h1 style="text-align: center; font-family: arial, sans-serif;"> Menu doesn't exist for date: {{date}}</h1>
+    {% endif %}
+{% else %}
+    <h1 style="text-align: center; font-family: arial, sans-serif;"> Requests close at 11:00 a.m. CLT, current time: {{time}}</h1>
+{% endif %}
+</body>
+</html>

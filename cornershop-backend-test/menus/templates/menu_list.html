@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu App</title>
+    <style>
+        table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        }
+
+        td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+        overflow: hidden !important;
+        }
+
+        tr:nth-child(even) {
+        background-color: #dddddd;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        $('#send_reminder').on('click', function() {
+            $.ajax({
+                url: 'menu/send_reminder',
+                data: {},
+                method: 'POST',
+            })
+            .done((res) => {
+                console.log('reminder sent succesfully')
+            })
+            .fail((err) => {
+                console.log(err);
+            });
+        });
+    });
+    
+        
+    </script>
+</head>
+<body>
+<h1 style="text-align: center; font-family: arial, sans-serif;"> Menus</h1>
+<table>
+    <tr>
+        <th>Date</th>
+        <th>Actions</th>
+    </tr>
+    {% for obj in menu_list %}
+    <tr>
+        <td><a href="{% url 'menus:detail_view' obj.id%}">{{obj.menu_date}}</a></td>
+        <td>
+            <a href="{% url 'menus:update_view' obj.id %}">update</a>
+            |
+            <a href="{% url 'menus:delete_view' obj.id %}">delete</a>
+        </td>
+    </tr>
+    {%endfor%}
+</table><br>
+<a href="{% url 'menus:create_view'%}"><button type="button"> Create Menu </button> </a><br><br>
+<a href="{% url 'menus:requests'%}"><button type="button"> See Requests </button> </a><br><br>
+<button type="button" id="send_reminder"> Send Reminder </button><br><br>
+<a href="{% url 'menus:logout'%}"><button type="button"> Logout </button> </a>
+</body>
+</html>

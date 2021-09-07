@@ -163,7 +163,6 @@ def request_details_view(request, date):
     else:
         return redirect('menus:login')
 
-
 # Creates the url for meal choosing, and pass it to a task that sends a slack message asynchronously
 @csrf_exempt
 def send_reminder(request):

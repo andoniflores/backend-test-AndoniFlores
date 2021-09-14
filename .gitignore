@@ -56,3 +56,4 @@ target/
 
 # ignore PyCharm settings
 .idea/
+cornershop-backend-test/menus/keys.py
